@@ -5,17 +5,14 @@ from scipy.stats import spearmanr
 import numpy as np
 import seaborn as sns
 
-#import csv
-#print(list(csv.reader([line.strip()],delimiter=','))[0]) #separar la linea por comas y asi obtener los registros
-
 ruta = "./CrimesUK_2011_2017/"
 fecha = os.listdir(ruta) #lista los directorios que se encuentran dentro de la carpeta principal
-fecha.sort() #ordena el arreglo del año menor al mayor 
+fecha.sort() #ordena el arreglo de menor a mayor
 
-months = [] #agregar el total del año al arreglo
+months = [] #agregar el total por mes
 mesesLabels = []
 for f in fecha:
-	total = 0 #contar el total por año
+	total = 0 #contar el total por mes
 	rutaSecundaria = ruta+f+"/"
 	mesesLabels.append(f)
 	for e in os.listdir(rutaSecundaria):
@@ -28,6 +25,7 @@ for f in fecha:
 	months.append(total)
 			
 
+#agregar las cantidades de cada uno de los 12 meses a su respectivo año
 year = [[0] * 12 for i in range(7)]
 j=1
 p=0
@@ -39,7 +37,7 @@ for i in range(len(months)):
 		aux = []
 		p+=1
 	j+=1
-	
+
 #Correlación de Spearman 4.2 y mapa de calor 4.3
 column_labels = ["2011","2012","2013","2014","2015","2016","2017"]
 row_labels = ["2011","2012","2013","2014","2015","2016","2017"]
@@ -48,7 +46,6 @@ for c in range(0,7):
 	for o in range(0,7):
 		cor, pv = spearmanr(year[c], year[o])
 		data[c][o] = cor
-		#print("Año: 201",c+1," con año: 201",o+1," correlacion: ", cor)
 		
 fig, ax = plt.subplots()
 heatmap = ax.pcolor(data, cmap=plt.cm.Reds)
@@ -60,8 +57,15 @@ ax.set_yticks(np.arange(len(column_labels))+0.5)
 ax.invert_yaxis()
 ax.xaxis.tick_top()
 
-ax.set_xticklabels(row_labels, minor=False)
-ax.set_yticklabels(column_labels, minor=False)
+ax.set_xticklabels(row_labels, minor=False, size=12)
+ax.set_yticklabels(column_labels, minor=False, size=12)
+
+#configuramos la barra de color de referencia del mapa de calor
+cb = plt.colorbar(heatmap) 
+cb.set_label("Correlación de Spearman por cada pareja de años", size=14)
+cb.ax.tick_params(labelsize=12)
+fig.tight_layout()
+
 plt.show()
 
 #Scatter Matrix con Scatter Plot 4.4
@@ -77,12 +81,13 @@ plt.show()
 
 #Gráfica de una curva por año 4.1
 mesesLabels = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
-plt.title("Crímenes por año")
+plt.title("Crímenes por año", size=14)
 plt.xlabel("Meses")
 plt.ylabel("Cantidad de crímenes")
 plt.grid(True)
 xx = range(1, len(mesesLabels)+1)
-plt.xticks(xx, mesesLabels, rotation=90)
+plt.xticks(xx, mesesLabels, rotation=90, size=12)
+plt.yticks(size=12)
 
 plt.plot(xx, year[0], '*-')
 plt.plot(xx, year[1], '+-')
@@ -92,6 +97,6 @@ plt.plot(xx, year[4], '1-')
 plt.plot(xx, year[5], '2-')
 plt.plot(xx, year[6], '3-')
 
-plt.legend(('2011', '2012', '2013','2014','2015','2016','2017'),prop = {'size':8}, loc = 'upper right')
+plt.legend(('2011', '2012', '2013','2014','2015','2016','2017'),prop = {'size':12}, loc = 'upper right')
 
 plt.show()

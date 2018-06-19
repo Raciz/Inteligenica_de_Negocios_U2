@@ -1,17 +1,15 @@
 import os
 from matplotlib import pyplot as plt
-#import csv
-#print(list(csv.reader([line.strip()],delimiter=','))[0]) #separar la linea por comas y asi obtener los registros
 
 ruta = "./CrimesUK_2011_2017/"
 fecha = os.listdir(ruta) #lista los directorios que se encuentran dentro de la carpeta principal
-fecha.sort() #ordena el arreglo del año menor al mayor 
+fecha.sort() #ordena el arreglo menor a mayor 
 
-months = [] #agregar el total del año al arreglo
+months = [] #agregar el total por mes
 mesesLabels = []
 
 for f in fecha:
-	total = 0 #contar el total por año
+	total = 0 #contar el total por mes
 	rutaSecundaria = ruta+f+"/"
 	mesesLabels.append(f)
 	for e in os.listdir(rutaSecundaria):
@@ -25,9 +23,10 @@ for f in fecha:
 			
 
 		
-print(months) #imprimir el arreglo de años
+print(months) #imprimir el arreglo de meses
 print(sum(months)) #sumar las cantidades para comprobar que es igual al resultado de la pregunta 1
 
+#pasos para graficar los 84 meses
 plt.figure("Crímenes por mes")
 num = [y for y in range(1,85)]
 plt.plot(num, months, 'g*-');
@@ -37,15 +36,3 @@ plt.grid(True)
 plt.xlabel("Meses")
 plt.ylabel("Cantidad de crímenes")
 plt.show()
-
-"""fig = plt.figure('Crímenes por mes', figsize=(5,100))
-ax = fig.add_subplot(111)
-xx = range(1, len(mesesLabels)+1)
-
-ax.barh(xx, months, color=['blue','red','green','orange','brown','purple','pink','cyan','yellow','gray','gold','black'], align="center",  edgecolor='none')
-ax.set_yticks(xx)
-ax.set_yticklabels(mesesLabels)
-
-plt.xlabel('Cantidad de crímenes')
-plt.ylabel('Meses')
-plt.show()"""

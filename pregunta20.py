@@ -4,7 +4,7 @@ import csv
 
 ruta = "./CrimesUK_2011_2017/"
 fecha = os.listdir(ruta) #lista los directorios que se encuentran dentro de la carpeta principal
-fecha.sort() #ordena el arreglo del año menor al mayor 
+fecha.sort() #ordena el arreglo de menor a mayor
 
 archivo = open(ruta+"2011-01/2011-01-avon-and-somerset-street.csv")
 campos = []
@@ -16,7 +16,7 @@ campos2 = []
 for i in range(12):
 	campos2.append(campos.split(",")[i])
 camposF = [0]*12
-"""resultados = open("campos_faltantes.txt", "w")
+resultados = open("campos_faltantes.txt", "w")
 for f in fecha:
 	rutaSecundaria = ruta+f+"/"
 	archivos = os.listdir(rutaSecundaria)
@@ -33,15 +33,17 @@ for f in fecha:
 					camposF[r]+=faltantes
 			cLine+=1
 
-
+#sacar porcentajes
 totalRegistros = 41286964
 for l in range(len(camposF)):
 	porcentaje = round(((camposF[l]*100)/totalRegistros),2)
 	cadena = str(camposF[l])+"-"+str(porcentaje)
 	resultados.write(cadena)
-	resultados.write('\n')"""
+	resultados.write('\n')
 
 #--------------------------------------GRAFICAR-------------------------------------------
+#este codigo si muestra la grafica, pero las cantidades las desordena y no hay una distribucion correcta
+#se utilizo el archivo txt generado y la grafica se hizo en excel
 archivoDatos = open("./campos_faltantes.txt")
 i=0
 camposPor = [0]*12
