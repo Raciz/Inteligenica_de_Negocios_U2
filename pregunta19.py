@@ -5,7 +5,7 @@ import csv
 
 ruta = "./CrimesUK_2011_2017/"
 fecha = os.listdir(ruta) #lista los directorios que se encuentran dentro de la carpeta principal
-fecha.sort() #ordena el arreglo del año menor al mayor 
+fecha.sort() #ordena el arreglo de menor a mayor 
 
 i = 0 #para saber en que año va
 years = [] #agregar el total del año al arreglo
@@ -21,7 +21,7 @@ for i in range(len(forces)):
 forces.sort()
 
 crimenesFuerza = [0]*42
-"""resultados = open("datos_faltantes.txt", "w")
+resultados = open("datos_faltantes.txt", "w")
 for f in fecha:
 	rutaSecundaria = ruta+f+"/"
 	fuerza = 0
@@ -39,11 +39,14 @@ for f in fecha:
 			cLine+=1
 		crimenesFuerza[fuerza] += faltantes
 		fuerza+=1
-		
+
+#se escribe los resultados en un txt
 for l in range(len(crimenesFuerza)):
 	resultados.write(str(crimenesFuerza[l]))
-	resultados.write('\n')"""
-		
+	resultados.write('\n')
+
+#se abre ese archivo para que solo sea necesario ejecutar el codigo de arriba una vez y	poder comentarlo
+#graficar los datos faltantes por fuerza policiaca
 archivoDatos = open("./datos_faltantes.txt")
 i=0
 for line in archivoDatos:
