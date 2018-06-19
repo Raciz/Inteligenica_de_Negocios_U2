@@ -42,14 +42,17 @@ for accion in acciones:
 		porcentajes.append(round(((acciones[accion] * 100) / total),3))
 		print(accionesL[-1], "=", porcentajes[-1], "-", acciones[accion])
 
-plt.barh(accionesL, porcentajes, color=['blue','red','green','orange','brown','purple','pink'], )
+plt.barh(accionesL, porcentajes, color=['blue','red','green','orange','brown','purple','pink'])
 plt.title("Acciones realizadas después de cada inspección")
 plt.xlabel("Porcentaje")
 plt.ylabel("Acciones realizadas")
 
 #Se ordenan manualmente los porcentajes que se mostrarán en la gráfica
+
 porcentajes2 = porcentajes
-porcentajes2[0], porcentajes2[1], porcentajes2[2], porcentajes2[3], porcentajes2[4], porcentajes2[5], porcentajes2[6], porcentajes2[7], porcentajes2[8], porcentajes2[9], porcentajes2[10], porcentajes2[11], porcentajes2[12], porcentajes2[13], porcentajes2[14], porcentajes2[15] = porcentajes2[9], porcentajes2[8], porcentajes2[5], porcentajes2[14], porcentajes2[12], porcentajes2[11], porcentajes2[2], porcentajes2[0], porcentajes2[7], porcentajes2[3], porcentajes2[6], porcentajes2[13], porcentajes2[10], porcentajes2[4], porcentajes2[1], porcentajes2[15] 
+"""
+porcentajes2[0], porcentajes2[1], porcentajes2[2], porcentajes2[3], porcentajes2[4], porcentajes2[5], porcentajes2[6], porcentajes2[7], porcentajes2[8], porcentajes2[9], porcentajes2[10], porcentajes2[11], porcentajes2[12], porcentajes2[13], porcentajes2[14], porcentajes2[15] = porcentajes2[9], porcentajes2[8], porcentajes2[5], porcentajes2[14], porcentajes2[12], porcentajes2[11], porcentajes2[2], porcentajes2[0], porcentajes2[7], porcentajes2[3], porcentajes2[6], porcentajes2[13], porcentajes2[10], porcentajes2[4], porcentajes2[1], porcentajes2[15]
+"""
 
 #Se muestra el valor de cada barra en la gráfica
 for i,v in enumerate(porcentajes2):

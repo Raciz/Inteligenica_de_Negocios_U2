@@ -1,6 +1,6 @@
 import os
 
-ruta = "./Proyecto2_IN/StopSearch_2011_2017/"
+ruta = "./StopSearch_2011_2017/"
 fecha = os.listdir(ruta) #lista los directorios que se encuentran dentro de la carpeta principal
 
 
